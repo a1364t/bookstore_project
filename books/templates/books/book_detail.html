@@ -12,13 +12,17 @@
               <div class="row w-sm-75 w-100">
                   <div class="col-xs-12 col-md-3 d-flex justify-content-center">
                       <div>
-                          <img src="https://images.officeworks.com.au/api/2/img/https://s3-ap-southeast-2.amazonaws.com/wc-prod-pim/JPEG_300x300/SMBCA4DRM_studymate_book_cover_a4_dream.jpg/fit?size=190x190&auth=MjA5OTcwODkwMg__"
-                               class="img-fluid rounded-start" alt="...">
+                          {% if book.cover %}
+                          <img src="{{ book.cover.url }}"
+                               class="shadow img-fluid rounded-start" alt="...">
+                          {% endif %}
                       </div>
                   </div>
                   <div class="col-xs-12 col-md-6 text-center text-md-end mt-md-1 mt-4">
                       <h1>{{ book.title|capfirst }}</h1>
                       <h5 class="small my-1"><span class="text-muted">Author: </span>{{ book.author }}</h5>
+                      <a href="{% url 'book_update' book.id %}"><button class="btn btn-info">Edit</button></a>
+                      <a href="{% url 'book_delete' book.id %}"><button class="btn btn-danger">Delete</button></a>
                   </div>
                   <div class="col-xs-12 col-md-3 d-flex flex-column">
                       <h3 class="align-self-center pt-2 text-muted align-self-md-end">

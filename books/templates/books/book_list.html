@@ -9,8 +9,10 @@
             <div class="card m-2" style="max-width: 45%">
                 <div class="row g-0 h-100">
                     <div class="col-md-4">
-                        <img src="https://images.officeworks.com.au/api/2/img/https://s3-ap-southeast-2.amazonaws.com/wc-prod-pim/JPEG_300x300/SMBCA4DRM_studymate_book_cover_a4_dream.jpg/fit?size=190x190&auth=MjA5OTcwODkwMg__"
+                        {% if book.cover %}
+                        <img src="{{ book.cover.url }}"
                              class="img-fluid rounded-start" alt="...">
+                        {% endif %}
                     </div>
                     <div class="col-md-8 h-100">
                         <div class="d-flex flex-column justify-content-between h-100">
