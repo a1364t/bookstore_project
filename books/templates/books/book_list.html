@@ -3,11 +3,34 @@
 {% block page_title %}Book Lists{% endblock %}
 
 {% block content %}
-    {% for book in books %}
-        <a href="{{ book.get_absolute_url }}"><h1>{{ book.title|capfirst }}</h1></a>
-        <p>{{ book.author|capfirst }}</p>
-        <p>{{ book.description|truncatewords:30 }}</p>
-        <br>
-    {% endfor %}
-    <a href="{% url 'book_create' %}">Add New Book</a>
+<div class="container mt-4">
+    <div class="row flex-row">
+        {% for book in books %}
+            <div class="card m-2" style="max-width: 45%">
+                <div class="row g-0 h-100">
+                    <div class="col-md-4">
+                        <img src="https://images.officeworks.com.au/api/2/img/https://s3-ap-southeast-2.amazonaws.com/wc-prod-pim/JPEG_300x300/SMBCA4DRM_studymate_book_cover_a4_dream.jpg/fit?size=190x190&auth=MjA5OTcwODkwMg__"
+                             class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8 h-100">
+                        <div class="d-flex flex-column justify-content-between h-100">
+                            <div class="card-body">
+                                <a href="{{ book.get_absolute_url }}"><h3 class="card-title"><strong>{{ book.title|capfirst }}</strong></h3></a>
+                                <p class="card-text pt-3">{{ book.description|truncatewords:30 }}</p>
+                                <p class="text-muted">by: {{ book.author|capfirst }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+<footer class="bg-light text-center text-lg-start mt-5">
+  <div class="text-center bg-grey">
+      <p>Practice Django <a class="text-dark" href="https://github.com/" target="_blank">GitHub</a></p>
+  </div>
+</footer>
 {% endblock %}
