@@ -22,8 +22,11 @@
                       <h1>{{ book.title|capfirst }}</h1>
                       <h5 class="small my-1"><span class="text-muted">Author: </span>{{ book.author }}</h5>
                       <h5 class="small my-1"><span class="text-muted">Book Creator: </span>{{ book.user.username }}</h5>
-                      <a href="{% url 'book_update' book.id %}"><button class="btn btn-info">Edit</button></a>
-                      <a href="{% url 'book_delete' book.id %}"><button class="btn btn-danger">Delete</button></a>
+                      {% if book.user == user %}
+                        <a href="{% url 'book_update' book.id %}"><button class="btn btn-info">Edit</button></a>
+                        <a href="{% url 'book_delete' book.id %}"><button class="btn btn-danger">Delete</button></a>
+                      {% endif %}
+
                   </div>
                   <div class="col-xs-12 col-md-3 d-flex flex-column">
                       <h3 class="align-self-center pt-2 text-muted align-self-md-end">
