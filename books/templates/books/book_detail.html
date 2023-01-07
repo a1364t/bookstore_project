@@ -1,6 +1,6 @@
 {% extends '_base.html' %}
 
-
+{% load crispy_forms_tags %}
 
 {% block page_title %}Detail of {{ book.title }}{% endblock %}
 
@@ -54,20 +54,9 @@
               <div class="card shadow my-3 p-5 w-sm-75 w-100">
                   <h3>Please enter your comment</h3>
                   <form method="POST">
-                      <div class="form-group py-2">
-                          <label class="py-1" for="author_name">Your name:</label>
-                          <input type="text" class="form-control" placeholder="Alex" name="author_name">
-                      </div>
-                      <div class="form-group py-2">
-                          <label class="py-1" for="email">Email:</label>
-                          <input type="email" class="form-control" placeholder="example@gmail.com" name="email">
-                      </div>
-                      <div class="form-group py-2">
-                          <label class="py-1" for="comment_text">Comment:</label>
-                          <textarea class="form-control" name="text" rows="3"
-                                    placeholder="Your comment"></textarea>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Send</button>
+                      {% csrf_token %}
+                        {{ comment_form|crispy }}
+                      <button type="submit" class="btn btn-primary mt-3">Send</button>
                   </form>
               </div>
           </div>
