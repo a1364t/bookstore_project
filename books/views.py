@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # for class-based view required login
 from django.contrib.auth.decorators import login_required   # for functional-based view
+import requests
+
 
 from .models import Book
 from .forms import CommentForm
@@ -25,6 +27,14 @@ def book_detail_view(request, pk):
     book = get_object_or_404(Book, pk=pk)
     # get book comments
     book_comments = book.comments.all()
+    # Fetch data from Google Book API
+    response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
+    try:
+        google_cover = response["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
+        google_description = response["items"][0]["volumeInfo"]["description"]
+    except:
+        google_description = None
+        google_cover = None
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
@@ -41,18 +51,20 @@ def book_detail_view(request, pk):
         'book': book,
         'comments': book_comments,
         'comment_form': comment_form,
+        'google_cover': google_cover,
+        'google_description': google_description
     })
 
 
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
-    fields = ['title', 'author', 'description', 'price', 'cover',]
+    fields = ['title', 'author', 'description', 'price', 'cover', ]
     template_name = 'books/book_create.html'
 
 
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Book
-    fields = ['title', 'author', 'description', 'price', 'cover',]
+    fields = ['title', 'author', 'description', 'price', 'cover', ]
     template_name = 'books/book_update.html'
 
     def test_func(self):
