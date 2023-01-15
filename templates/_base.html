@@ -37,7 +37,9 @@
             </div>
             <div class="mx-2 text-white">
                 {% if user.is_authenticated %}
-                    Welcome {{ user.username }} | <a class="link-light text-decoration-none" href="{% url 'logout' %}">Log Out</a>
+                    Welcome {{ user.username }}
+                | <a class="link-light text-decoration-none" href="{% url 'password_change' %}">Change Password</a>
+                | <a class="link-light text-decoration-none" href="{% url 'logout' %}">Log Out</a>
                 {% else %}
                     <a class="link-light text-decoration-none" href="{% url 'login' %}">Log In</a>
                     |
