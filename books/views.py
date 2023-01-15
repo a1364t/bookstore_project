@@ -1,13 +1,13 @@
 from django.views import generic
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # for class-based view required login
 from django.contrib.auth.decorators import login_required   # for functional-based view
 import requests
 
 
 from .models import Book
-from .forms import CommentForm
+from .forms import CommentForm, BookForm
 
 
 class BookListView(generic.ListView):
@@ -16,10 +16,10 @@ class BookListView(generic.ListView):
     template_name = 'books/book_list.html'
     context_object_name = 'books'
 
-
 # class BookDetailView(generic.DetailView):
 #     model = Book
 #     template_name = 'books/book_detail.html'
+
 
 @login_required
 def book_detail_view(request, pk):
@@ -28,8 +28,8 @@ def book_detail_view(request, pk):
     # get book comments
     book_comments = book.comments.all()
     # Fetch data from Google Book API
-    response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
     try:
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
         google_cover = response["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
         google_description = response["items"][0]["volumeInfo"]["description"]
     except:
@@ -60,6 +60,16 @@ class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
     fields = ['title', 'author', 'description', 'price', 'cover', ]
     template_name = 'books/book_create.html'
+
+    def form_valid(self, form):
+        book = form.save(commit=False)
+        book.user = self.request.user
+        try:
+            response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
+            book.google_cover = response["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
+        except:
+            book.google_cover = None
+        return super().form_valid(form)
 
 
 class BookUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):

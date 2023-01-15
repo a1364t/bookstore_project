@@ -10,7 +10,10 @@
                 <div class="row g-0 h-100">
                     <div class="col-md-4">
                         {% if book.cover %}
-                        <img src="{{ book.cover.url }}"
+                            <img src="{{ book.cover.url }}"
+                                class="img-fluid rounded-start" alt="...">
+                        {% elif book.google_cover %}
+                            <img src="{{ book.google_cover }}"
                              class="img-fluid rounded-start" alt="...">
                         {% endif %}
                     </div>
@@ -44,4 +47,12 @@
   </ul>
 </nav>
 
+<footer class="footer">
+    <div class="bg-light text-center text-lg-start mt-5">
+        <div class="text-center bg-grey footer-widget">
+            <p>BookCafe© | all rights reserved | 2023 </p>
+        </div>
+    </div>
+</footer>
 {% endblock %}
+

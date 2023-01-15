@@ -18,13 +18,13 @@
     <title>{% block page_title %}{% endblock %}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'book_list' %}">
                 <img src="{% static 'icons/book.png' %}" alt="" height="30"
                      class="d-inline-block align-text-top">
             </a>
-            <a class="navbar-brand mx-3" href="#">BookStore</a>
+            <a class="navbar-brand mx-3" href="{% url 'book_list' %}">BookCafe</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,11 +54,7 @@
         {% endblock %}
     </div>
 
-    <footer class="bg-light text-center text-lg-start mt-5">
-        <div class="text-center bg-grey">
-            <p>Django Practice <a class="text-dark" href="https://github.com/a1364t" target="_blank">GitHub</a></p>
-        </div>
-    </footer>
+
 
 
     <!-- Optional JavaScript; choose one of the two! -->

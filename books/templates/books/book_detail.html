@@ -41,10 +41,11 @@
 
           <div class="d-flex justify-content-center">
               <div class="my-3 p-5 w-sm-75 w-100">
-                  {% if google_description %}
-                    <span class="text-muted"><strong>Description from Google Book:</strong></span>{{ google_description|linebreaks }}
+                  {% if book.description %}
+                  <span class="text-muted">{{ book.description|linebreaks }}</span>
+                  {% else %}
+                  <span class="text-muted">{{ google_description|linebreaks }}</span>
                   {% endif %}
-                    <span class="text-muted"><strong>Description from {{ book.user }}</strong>:</span>{{ book.description|linebreaks }}
               </div>
           </div>
 
@@ -80,4 +81,14 @@
       </div>
   </div>
 </div>
+
+<footer class="footer">
+    <div class="bg-light text-center text-lg-start mt-5">
+        <div class="text-center bg-grey footer-widget">
+            <p>BookCafe© | all rights reserved | 2023 </p>
+        </div>
+    </div>
+</footer>
+
 {% endblock %}
+
