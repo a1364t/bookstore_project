@@ -8,6 +8,7 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     description = models.TextField(blank=True)
+    google_description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     cover = models.ImageField(verbose_name='Book Cover Image', upload_to='covers/', blank=True)
     google_cover = models.TextField(blank=True)

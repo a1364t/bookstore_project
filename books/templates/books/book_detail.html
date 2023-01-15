@@ -14,10 +14,10 @@
                       <div>
                           {% if book.cover %}
                           <img src="{{ book.cover.url }}"
-                               class="shadow img-fluid rounded-start" alt="...">
-                          {% elif google_cover %}
-                          <img src="{{ google_cover }}"
-                               class="shadow img-fluid rounded-start" alt="...">
+                               class="shadow img-fluid rounded-start" alt="cover-image">
+                          {% elif book.google_cover %}
+                          <img src="{{ book.google_cover }}"
+                               class="shadow img-fluid rounded-start" alt="cover-image">
                           {% endif %}
                       </div>
                   </div>
@@ -44,7 +44,7 @@
                   {% if book.description %}
                   <span class="text-muted">{{ book.description|linebreaks }}</span>
                   {% else %}
-                  <span class="text-muted">{{ google_description|linebreaks }}</span>
+                  <span class="text-muted">{{ book.google_description|linebreaks }}</span>
                   {% endif %}
               </div>
           </div>

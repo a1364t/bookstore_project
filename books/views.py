@@ -12,7 +12,7 @@ from .forms import CommentForm, BookForm
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 4 # number of items in a page
+    paginate_by = 6 # number of items in a page
     template_name = 'books/book_list.html'
     context_object_name = 'books'
 
@@ -27,14 +27,6 @@ def book_detail_view(request, pk):
     book = get_object_or_404(Book, pk=pk)
     # get book comments
     book_comments = book.comments.all()
-    # Fetch data from Google Book API
-    try:
-        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
-        google_cover = response["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
-        google_description = response["items"][0]["volumeInfo"]["description"]
-    except:
-        google_description = None
-        google_cover = None
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
@@ -51,9 +43,7 @@ def book_detail_view(request, pk):
         'book': book,
         'comments': book_comments,
         'comment_form': comment_form,
-        'google_cover': google_cover,
-        'google_description': google_description
-    })
+       })
 
 
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
@@ -64,11 +54,15 @@ class BookCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         book = form.save(commit=False)
         book.user = self.request.user
+        # Fetch data from Google Book API
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
         try:
-            response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
             book.google_cover = response["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
+            book.google_description = response["items"][0]["volumeInfo"]["description"]
         except:
             book.google_cover = None
+            book.google_description = None
+
         return super().form_valid(form)
 
 

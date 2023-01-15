@@ -11,17 +11,21 @@
                     <div class="col-md-4">
                         {% if book.cover %}
                             <img src="{{ book.cover.url }}"
-                                class="img-fluid rounded-start" alt="...">
+                                class="img-fluid rounded-start" alt="book-cover">
                         {% elif book.google_cover %}
                             <img src="{{ book.google_cover }}"
-                             class="img-fluid rounded-start" alt="...">
+                             class="img-fluid rounded-start" alt="book-cover">
                         {% endif %}
                     </div>
                     <div class="col-md-8 h-100">
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="card-body">
                                 <a class="text-decoration-none" href="{{ book.get_absolute_url }}"><h3 class="card-title"><strong>{{ book.title|capfirst }}</strong></h3></a>
-                                <p class="card-text pt-3">{{ book.description|truncatewords:30 }}</p>
+                                {% if book.description %}
+                                    <p class="card-text pt-3">{{ book.description|truncatewords:30 }}</p>
+                                {% elif book.google_description %}
+                                    <p class="card-text pt-3">{{ book.google_description|truncatewords:30 }}</p>
+                                {% endif %}
                                 <p class="text-muted">by: {{ book.author|capfirst }}</p>
                             </div>
                         </div>
