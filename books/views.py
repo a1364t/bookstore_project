@@ -60,8 +60,8 @@ class BookCreateView(LoginRequiredMixin, generic.CreateView):
             book.google_cover = response["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
             book.google_description = response["items"][0]["volumeInfo"]["description"]
         except:
-            book.google_cover = None
-            book.google_description = None
+            book.google_cover = ''
+            book.google_description = ''
 
         return super().form_valid(form)
 
