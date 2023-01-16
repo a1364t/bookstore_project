@@ -12,7 +12,7 @@ A user who created a book has only access to edit and delete button in book deta
 
 # Quick Start
 
-1- Set up the [Python Virtual Environmen] (https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment)
+1- Set up the [Python Virtual Environmen](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment)
 
 2- Running the following commands (If you are on Windows, you may use ```py``` or ```py -3``` instead of ```python``` to start the Python)
 
