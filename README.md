@@ -1,6 +1,6 @@
 # BookCafe
 
-Live Deme: [Link](http://a1364t.pythonanywhere.com/)
+Live Demo: [Link](http://a1364t.pythonanywhere.com/)
 
 BookCafe is a full CRUD application made using Django, Postgresql, Docker, Bootstrap, and google book API. This app provide an environment for book lovers to find popular books, leave comments, and share the books they liked.
 
