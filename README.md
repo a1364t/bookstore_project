@@ -10,19 +10,17 @@ When user add a new book, the description and cover image are optional fields. I
 If user is nor happy with the auto generated description or cover image, they can edit the book info. 
 A user who created a book has only access to edit and delete button in book detail template.
 
-# Quick Start
+# Bugs/Issues
+- Manually uploaded cover image doesn't work properly.
+- Navbar doesn't work properly on small screens.
 
-<<<<<<< HEAD
+
+# Quick Start
 1- Set up the [Python Virtual Environment] (https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment)
 
 1- Set up the [Python Virtual Environment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment)
 
-
 2- Running the following commands (If you are on Windows, you may use ```py``` or ```py -3``` instead of ```python``` to start the Python)
-
-# Bugs/Issues
-- Manually uploaded cover image doesn't work properly.
-- Navbar doesn't work properly on small screens.
 
 ```
 pip install -r requirements.txt
