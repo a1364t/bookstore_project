@@ -11,7 +11,6 @@ If user is not happy with the auto-generated description or cover image, they ca
 A user who created a book has only access to the edit and delete buttons in the book detail page. <br />
 
 # Bugs/Issues
-- Manually uploaded cover image doesn't work properly.
 - Navbar doesn't work properly on small screens.
 
 
