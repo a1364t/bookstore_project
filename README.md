@@ -15,7 +15,6 @@ A user who created a book has only access to the edit and delete buttons in the 
 
 
 # Quick Start
-1- Set up the [Python Virtual Environment] (https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment)
 
 1- Set up the [Python Virtual Environment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment)
 
