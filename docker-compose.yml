@@ -11,6 +11,9 @@ services:
     depends_on:
       - db
 
+    environment:
+      DJANGO_DEBUG: "${DEBUG}"
+      DJANGO_SECRET_KEY: "${Secret_key}"
 
 
 
