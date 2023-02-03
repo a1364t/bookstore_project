@@ -29,7 +29,7 @@ python manage.py createsuperuser # Create a superuser
 python manage.py runserver
 ```
 
-3- open a browser and enter ```http://127.0.0.1:8000/admin ``` to open the admin panel. Enter the username and password of for superuser.
+3- open a browser and enter ```http://127.0.0.1:8000/admin ``` to open the admin panel. Enter the username and password for superuser.
 
 4- open a tab to ``` http://127.0.0.1:8000/``` to see the main site.
 
