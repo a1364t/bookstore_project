@@ -1,18 +1,20 @@
 from django.views import generic
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # for class-based view required login
-from django.contrib.auth.decorators import login_required   # for functional-based view
+from django.shortcuts import get_object_or_404, render
+# for class-based view required login
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+# for functional-based view
+from django.contrib.auth.decorators import login_required
 import requests
 
 
 from .models import Book
-from .forms import CommentForm, BookForm
+from .forms import CommentForm
 
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 6 # number of items in a page
+    paginate_by = 6  # number of items in a page
     template_name = 'books/book_list.html'
     context_object_name = 'books'
 
@@ -31,7 +33,8 @@ def book_detail_view(request, pk):
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)  # commit=False => do not save in DB
+            # commit=False => do not save in DB
+            new_comment = comment_form.save(commit=False)
             new_comment.book = book
             new_comment.user = request.user
             new_comment.save()
@@ -43,7 +46,7 @@ def book_detail_view(request, pk):
         'book': book,
         'comments': book_comments,
         'comment_form': comment_form,
-       })
+    })
 
 
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
@@ -55,7 +58,8 @@ class BookCreateView(LoginRequiredMixin, generic.CreateView):
         book = form.save(commit=False)
         book.user = self.request.user
         # Fetch data from Google Book API
-        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
+        response = requests.get(
+            f'https://www.googleapis.com/books/v1/volumes?q=title:{book.title}').json()
         try:
             book.google_cover = response["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
             book.google_description = response["items"][0]["volumeInfo"]["description"]
@@ -84,7 +88,3 @@ class BookDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
     def test_func(self):
         obj = self.get_object()
         return obj.user == self.request.user
-
-
-
-
