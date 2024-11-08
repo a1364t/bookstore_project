@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   web:
@@ -14,8 +14,6 @@ services:
     environment:
       DJANGO_DEBUG: "${DEBUG}"
       DJANGO_SECRET_KEY: "${Secret_key}"
-
-
 
   db:
     image: postgres:14

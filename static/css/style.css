@@ -1,31 +1,31 @@
 @font-face {
-    font-family: "Roboto";
-    src: url("../fonts/Roboto-Regular.ttf");
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.ttf");
 }
 @font-face {
-    font-family: "Roboto";
-    src: url("../fonts/Roboto-Bold.ttf");
-    font-weight: bold;
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Bold.ttf");
+  font-weight: bold;
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.8rem;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.8rem;
 }
 
 /* SM breakpoint */
 @media (min-width: 576px) {
-    /* CUSTOM WIDTHS */
-    .w-sm-75 { width: 75%!important; }
+  /* CUSTOM WIDTHS */
+  .w-sm-75 {
+    width: 75% !important;
+  }
 }
 
 .image {
-    max-height: 400px;
-    border-radius: 15px;
+  max-height: 400px;
+  border-radius: 15px;
 }
 
 .text {
-    font-size: 18px;
+  font-size: 18px;
 }
-
-

@@ -1,9 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django import forms
 
 from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
     class Meta:
         model = CustomUser
         # fields = UserCreationForm.Meta.fields + ('age',)
@@ -11,6 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserCreationForm):
+    email = forms.EmailField(required=True)
     class Meta:
         model = CustomUser
         # fields = UserChangeForm.Meta.fields
